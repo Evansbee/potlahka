@@ -1,34 +1,34 @@
 #pragma once
 
+#include "config.hpp"
 #include <cmath>
 #include <iostream>
 
-template <typename T>
 class vec3
 {
 public:
-	vec3() : vec3(T(), T(), T()) {}
-	vec3(T a, T b, T c) : x(a), y(b), z(c) {}
+	vec3() : vec3(real(), real(), real()) {}
+	vec3(real a, real b, real c) : x(a), y(b), z(c) {}
 
-	inline const vec3<T>& operator+() const { return *this; }
-	inline const vec3<T>& operator-() const { return vec3<T>(-x, -y, -z); }
+	inline const vec3& operator+() const { return *this; }
+	inline const vec3& operator-() const { return vec3(-x, -y, -z); }
 
-	inline T operator[](int i) const { return d[i]; }
-	inline T& operator[](int i) { return d[i]; }
+	inline real operator[](int i) const { return d[i]; }
+	inline real& operator[](int i) { return d[i]; }
 
-	inline vec3<T>& operator += (const vec3<T> &other);
-	inline vec3<T>& operator -= (const vec3<T> &other);
-	inline vec3<T>& operator *= (const vec3<T> &other);
-	inline vec3<T>& operator /= (const vec3<T> &other);
-	inline vec3<T>& operator *= (T other);
-	inline vec3<T>& operator /= (T other);
+	inline vec3& operator += (const vec3 &other);
+	inline vec3& operator -= (const vec3 &other);
+	inline vec3& operator *= (const vec3 &other);
+	inline vec3& operator /= (const vec3 &other);
+	inline vec3& operator *= (real other);
+	inline vec3& operator /= (real other);
 
-	inline T length() const
+	inline real length() const
 	{
 		return sqrt(d[0] * d[0] + d[1] * d[1] + d[2] * d[2]);
 	}
 
-	inline T length_squared() const
+	inline real length_squared() const
 	{
 		return d[0] * d[0] + d[1] * d[1] + d[2] * d[2];
 	}
@@ -38,104 +38,99 @@ public:
 public:
 	union
 	{
-		T d[3];
+		real d[3];
 		struct
 		{
 			union
 			{
-				T x;
-				T r;
+				real x;
+				real r;
 			};
 			union
 			{
-				T y;
-				T g;
+				real y;
+				real g;
 			};
 			union
 			{
-				T z;
-				T b;
+				real z;
+				real b;
 			};
 		};
 	};
 
 };
 
-typedef vec3<float> vec3f;
-typedef vec3<double> vec3d;
 
 
-template <typename T>
-inline std::istream& operator >> (std::istream &is, vec3<T>& v)
+inline std::istream& operator >> (std::istream &is, vec3& v)
 {
-	is >> t[0] >> t[1] >> t[2];
+	is >> v[0] >> v[1] >> v[2];
 	return is;
 }
 
-template <typename T>
-inline std::ostream& operator<<(std::ostream &os, const vec3<T>& v)
+
+inline std::ostream& operator<<(std::ostream &os, const vec3& v)
 {
 	os << v.x << " " << v.y << " " << v.z;
 	return os;
 }
 
-template <typename T>
-inline void vec3<T>::make_unit()
+
+inline void vec3::make_unit()
 {
-	T k = T(1.0) / length();
+	real k = real(1.0) / length();
 	d[0] *= k;
 	d[1] *= k;
 	d[2] *= k;
 }
 
-template <typename T>
-inline vec3<T> operator +(const vec3<T> &v1, const vec3<T> &v2)
+
+inline vec3 operator +(const vec3 &v1, const vec3 &v2)
 {
-	return vec3<T>(v1[0] + v2[0], v1[1] + v2[1], v1[2] + v2[2]);
+	return vec3(v1[0] + v2[0], v1[1] + v2[1], v1[2] + v2[2]);
 }
 
-template <typename T>
-inline vec3<T> operator -(const vec3<T> &v1, const vec3<T> &v2)
+
+inline vec3 operator -(const vec3 &v1, const vec3 &v2)
 {
-	return vec3<T>(v1[0] - v2[0], v1[1] - v2[1], v1[2] - v2[2]);
+	return vec3(v1[0] - v2[0], v1[1] - v2[1], v1[2] - v2[2]);
 }
 
-template <typename T>
-inline vec3<T> operator *(const vec3<T> &v1, T k)
+
+inline vec3 operator *(const vec3 &v1, real k)
 {
-	return vec3<T>(v1[0] * k, v1[1] * k, v1[2] * k);
+	return vec3(v1[0] * k, v1[1] * k, v1[2] * k);
 }
 
-template <typename T>
-inline vec3<T> operator *(T k, const vec3<T> &v1)
+inline vec3 operator *(real k, const vec3 &v1)
 {
-	return vec3<T>(v1[0] * k, v1[1] * k, v1[2] * k);
+	return vec3(v1[0] * k, v1[1] * k, v1[2] * k);
 }
 
-template <typename T>
-inline vec3<T> operator /(const vec3<T> &v1, T k)
+
+inline vec3 operator /(const vec3 &v1, real k)
 {
-	return vec3<T>(v1[0] / k, v1[1] / k, v1[2] / k);
+	return vec3(v1[0] / k, v1[1] / k, v1[2] / k);
 }
 
-template <typename T>
-inline T dot(const vec3<T> &v1, const vec3<T> &v2)
+
+inline real dot(const vec3 &v1, const vec3 &v2)
 {
 	return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
 }
 
-template <typename T>
-inline vec3<T> cross(const vec3<T> &v1, const vec3<T> &v2)
+
+inline vec3 cross(const vec3 &v1, const vec3 &v2)
 {
-	return vec3<T>(v1[1] * v2[2] - v1[2] * v2[1],
+	return vec3(v1[1] * v2[2] - v1[2] * v2[1],
 		-(v1[0] * v2[2] - v1[2] * v2[0]),
 		v1[0] * v2[1] - v1[1] * v2[0]);
 }
 
-template <typename T>
-inline vec3<T> unit_vector(const vec3<T> &v)
+inline vec3 unit_vector(const vec3 &v)
 {
-	vec3<T> uv = v;
+	vec3 uv = v;
 	uv.make_unit();
 	return uv;
 }

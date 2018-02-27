@@ -148,11 +148,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\image.cpp" />
+    <ClCompile Include="..\..\src\random.cpp" />
     <ClCompile Include="..\..\src\vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\inc\config.hpp" />
+    <ClInclude Include="..\..\inc\hittable.hpp" />
     <ClInclude Include="..\..\inc\image.hpp" />
+    <ClInclude Include="..\..\inc\material.hpp" />
+    <ClInclude Include="..\..\inc\plane.hpp" />
+    <ClInclude Include="..\..\inc\random.hpp" />
     <ClInclude Include="..\..\inc\ray.hpp" />
+    <ClInclude Include="..\..\inc\sphere.hpp" />
     <ClInclude Include="..\..\inc\vec3.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
