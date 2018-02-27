@@ -84,3 +84,12 @@ void WriteImage(const char *filename, Image img, bool invert_y)
 		fprintf(stderr, "[ERROR] FAILED TO WRITE OUTPUT FILE\n");
 	}
 }
+
+
+uint32_t RealToBGRA(const vec3& in, bool gamma_correct)
+{
+   if(!gamma_correct)
+   {
+      uint32_t abgr;
+
+}
