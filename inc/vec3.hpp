@@ -11,7 +11,7 @@ public:
 	vec3(real a, real b, real c) : x(a), y(b), z(c) {}
 
 	inline const vec3& operator+() const { return *this; }
-	inline const vec3& operator-() const { return vec3(-x, -y, -z); }
+	inline const vec3 operator-() const { return vec3(-x, -y, -z); }
 
 	inline real operator[](int i) const { return d[i]; }
 	inline real& operator[](int i) { return d[i]; }

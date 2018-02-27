@@ -11,4 +11,9 @@ class world : public hittable
       virtual bool hit(const ray& r, real tmin, real tmax, hit_recort &record) const override;
    private:
       std::vector<std::unique_ptr<hittable>> m_Entities;
+};
+
+bool world::hit(const ray& r, real tmin, real tmax, hit_record &record) const
+{
+   return false;
 }

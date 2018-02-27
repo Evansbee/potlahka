@@ -60,7 +60,7 @@ int main()
 			sample_cnt++;
 			if (sample_cnt % 10000 == 0)
 			{
-				std::cout << "\rSamples: " << sample_cnt;
+				std::cout << "\rSamples: " << sample_cnt << std::flush;
 			}
 			float u = (float)x / (float)img.Width;
 			float v = (float)y / (float)img.Height;
