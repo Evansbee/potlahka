@@ -72,7 +72,7 @@ void WriteImage(const char *filename, Image img, bool invert_y)
 #ifdef _WIN32
 	if (fopen_s(&f, filename, "wb") == 0)
 #else
-	if (f = fopen(filename, "WB"))
+	if ((f = fopen(filename, "wb")) != NULL)
 #endif
 	{
 		fwrite(&bmh, sizeof(bmh), 1, f);
