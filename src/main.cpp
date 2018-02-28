@@ -7,21 +7,23 @@
 #include <iostream>
 #include "image.hpp"
 #include "vec3.hpp"
+#include "plane.hpp"
 #include "ray.hpp"
 #include "sphere.hpp"
 #include "hittable.hpp"
 #include "random.hpp"
 #include <vector>
 
+std::vector<hittable*> hittables;
 std::vector<sphere> spheres;
 vec3 color(const ray &r)
 {
 	hit_record h;
 	real max = 1000.0;
 	bool any_hit = false;
-	for (auto &s : spheres)
+	for (auto &s : hittables)
 	{
-		if (s.hit(r, 0.0, max, h))
+		if (s->hit(r, 0.0, max, h))
 		{
 			any_hit = true;
 			max = h.t;
@@ -44,8 +46,9 @@ int main()
 
 	for (auto i = 0; i < 50; i++)
 	{
-		spheres.push_back(sphere(vec3(random_range(-10.0, 10.0), random_range(-10.0, 10.0), random_range(-10.0, -2.0)), random_range(0, 2.0)));
+		hittables.push_back(new sphere(vec3(random_range(-10.0, 10.0), random_range(-10.0, 10.0), random_range(-10.0, -2.0)), random_range(0, 2.0)));
 	}
+	hittables.push_back(new plane(vec3(0, 1, 0), -2.0));
 	vec3 lower_left_corner(-2.0, -1.0, -1.0);
 	vec3 horizontal(4.0, 0.0, 0.0);
 	vec3 vertical(0.0, 2.0, 0.0);

@@ -152,6 +152,7 @@
     <ClCompile Include="..\..\src\vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\inc\camera.hpp" />
     <ClInclude Include="..\..\inc\config.hpp" />
     <ClInclude Include="..\..\inc\hittable.hpp" />
     <ClInclude Include="..\..\inc\image.hpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="..\..\inc\ray.hpp" />
     <ClInclude Include="..\..\inc\sphere.hpp" />
     <ClInclude Include="..\..\inc\vec3.hpp" />
+    <ClInclude Include="..\..\inc\world.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
