@@ -15,7 +15,6 @@
 #include <vector>
 
 std::vector<hittable*> hittables;
-std::vector<sphere> spheres;
 vec3 color(const ray &r)
 {
 	hit_record h;
