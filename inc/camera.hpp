@@ -11,15 +11,18 @@ public:
 	void SetLookAt(const vec3 &newLookAt);
 	void SetFocusDistance(real newFocusDistance);
 	void SetFoV(real newFoV);
+	void SetAspectRatio(real newAspectRatio);
 
-	vec3 Position() const;
-	vec3 LookAt() const;
-	real FocusDistance() const;
-	real FoV() const;
+	vec3 Position() const {r eturn m_Position; }
+	vec3 LookAt() const { return m_LookAt; }
+	real FocusDistance() const { return m_FocusDistance;  }
+	real FoV() const { return m_FoV;  }
+	real AspectRatio() const { return m_AspectRatio;  }
 
 private:
 	vec3 m_Position;
 	vec3 m_LookAt;
 	real m_FocusDistance;
-	real m_FoV; // width/height
+	real m_FoV; // vertical
+	real m_AspectRatio; //width/height, usually positive
 };
