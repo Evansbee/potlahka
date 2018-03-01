@@ -3,13 +3,16 @@
 #include "config.hpp"
 #include "ray.hpp"
 #include "vec3.hpp"
-#include "material.hpp"
+
+class material;
+
 
 struct hit_record
 {
 	real t;
 	vec3 p;
 	vec3 n;
+	material *mat;
 };
 
 class hittable

@@ -158,6 +158,7 @@
     <ClInclude Include="..\..\inc\hittable.hpp" />
     <ClInclude Include="..\..\inc\image.hpp" />
     <ClInclude Include="..\..\inc\material.hpp" />
+    <ClInclude Include="..\..\inc\overlay_text.hpp" />
     <ClInclude Include="..\..\inc\plane.hpp" />
     <ClInclude Include="..\..\inc\random.hpp" />
     <ClInclude Include="..\..\inc\ray.hpp" />

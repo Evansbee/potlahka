@@ -13,7 +13,7 @@ public:
 	void SetFoV(real newFoV);
 	void SetAspectRatio(real newAspectRatio);
 
-	vec3 Position() const {r eturn m_Position; }
+	vec3 Position() const {return m_Position; }
 	vec3 LookAt() const { return m_LookAt; }
 	real FocusDistance() const { return m_FocusDistance;  }
 	real FoV() const { return m_FoV;  }

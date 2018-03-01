@@ -18,8 +18,6 @@ public:
 
 	inline vec3& operator += (const vec3 &other);
 	inline vec3& operator -= (const vec3 &other);
-	inline vec3& operator *= (const vec3 &other);
-	inline vec3& operator /= (const vec3 &other);
 	inline vec3& operator *= (real other);
 	inline vec3& operator /= (real other);
 
@@ -97,6 +95,10 @@ inline vec3 operator -(const vec3 &v1, const vec3 &v2)
 	return vec3(v1[0] - v2[0], v1[1] - v2[1], v1[2] - v2[2]);
 }
 
+inline vec3 operator *(const vec3 &v1, const vec3 &v2)
+{
+	return vec3(v1[0] * v2[0], v1[1] * v2[1], v1[2] * v2[2]);
+}
 
 inline vec3 operator *(const vec3 &v1, real k)
 {
@@ -133,4 +135,15 @@ inline vec3 unit_vector(const vec3 &v)
 	vec3 uv = v;
 	uv.make_unit();
 	return uv;
+}
+
+
+inline vec3& vec3::operator += (const vec3 &other) { *this = *this + other;  return *this; }
+inline vec3& vec3::operator -= (const vec3 &other) { *this = *this - other;  return *this; }
+inline vec3& vec3::operator *= (real other) { *this = *this * other;  return *this; }
+inline vec3& vec3::operator /= (real other) { *this = *this / other;  return *this; }
+
+inline vec3 reflect(const vec3& in, const vec3& n)
+{
+	return in - 2.0*dot(in, n)*n;
 }
