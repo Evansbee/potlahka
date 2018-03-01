@@ -1,7 +1,7 @@
 // raytrace.cpp : Defines the entry point for the console application.
 //
 
-
+#include <cfloat>
 #include <cstdlib>
 #include <cstdint>
 #include <iostream>
@@ -98,15 +98,15 @@ int main()
 		{
 			auto this_time = clock();
 			last_percent = this_pcnt;
-			std::cout << "[INFO] " << 100 * (img.Height - y) / img.Height << "% Complete ("<<this_time-start_time<<"ms)\n";
+			std::cout << "[INFO] " << 100 * (img.Height - y) / img.Height << "% Complete ("<<(this_time-start_time)/(CLOCKS_PER_SEC/1000)<<"ms)\n";
 		}
 		
 	}
 	auto end_time = clock();
 	auto elapsed_time = end_time - start_time;
-	std::cout << "[INFO] Raytraced image in " << elapsed_time << "ms\n";
+	std::cout << "[INFO] Raytraced image in " << elapsed_time /(CLOCKS_PER_SEC/1000) << "ms\n";
 	std::cout << "[INFO] Cast " << rays << " rays\n";
-	std::cout << "[INFO] Performance: " << rays / elapsed_time << " rays/ms\n";
+	std::cout << "[INFO] Performance: " << rays / (elapsed_time / (CLOCKS_PER_SEC/1000))  << " rays/ms\n";
 	WriteImage("test.bmp", img);
 	std::cout << "Waiting for keypress to exit...\n";
 	static_cast<void>(std::getchar());
