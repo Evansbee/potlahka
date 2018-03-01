@@ -61,9 +61,9 @@ int main()
 
 	hittables.push_back(new sphere(vec3(0, -100.5, -1), 100, new lambertian(vec3(.8, .8, 0))));
 
-	hittables.push_back(new sphere(vec3(1, 0, -1), .5, new metal(vec3(.8, .6, .2))));
+	hittables.push_back(new sphere(vec3(1, 0, -1), .5, new metal(vec3(.95,.95,.95),.05)));
 
-	hittables.push_back(new sphere(vec3(-1, 0, -1), .5, new metal(vec3(.8, .8, .8))));
+	hittables.push_back(new sphere(vec3(-1, 0, -1), .5, new metal(vec3(.8, .8, .8),.2)));
 
 	vec3 lower_left_corner(-2.0, -1.0, -1.0);
 	vec3 horizontal(4.0, 0.0, 0.0);

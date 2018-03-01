@@ -31,14 +31,21 @@ private:
 class metal : public material
 {
 public:
-	metal(const vec3& albedoIn) : m_Albedo(albedoIn) {}
+	metal(const vec3& albedoIn, real fuzz = 0.0) : m_Albedo(albedoIn), m_Fuzziness(fuzz) {}
 	virtual bool scatter(const ray& ray_in, const hit_record& rec, vec3& attenuation, ray& scattered) const
 	{
 		vec3 reflected = reflect(unit_vector(ray_in.direction), rec.n);
-		scattered = ray(rec.p, reflected);
+		scattered = ray(rec.p, reflected + m_Fuzziness * random_in_unit_sphere());
 		attenuation = m_Albedo;
 		return (dot(scattered.direction, rec.n) > 0);
 	}
 private:
 	vec3 m_Albedo;
+	real m_Fuzziness;
 };
+
+
+
+
+
+
