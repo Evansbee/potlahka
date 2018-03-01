@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
-
+#include <string>
 #include "image.hpp"
 #include "vec3.hpp"
 #include "plane.hpp"
@@ -55,7 +55,7 @@ vec3 color(const ray &r, int depth = 0)
 	return (1.0f - ot) * vec3(1.0, 1.0, 1.0) + ot * vec3(.5,.7,1);
 }
 
-int main()
+int main(int argc, char** argv)
 {
 	Image img = AllocateImage(400, 200);
 	auto start_time = clock();
@@ -70,8 +70,12 @@ int main()
 	int32_t last_percent = -1;
 	
 	camera c(vec3(0.0,0.0,0.0),vec3(),75.0,2.0); //camera(const vec3& position, const vec3& lookAt, real FoV, real AspectRatio))
-
-	const int num_samples = 16;
+	int num_samples = 32;
+	if (argc == 2 )
+	{
+		num_samples = std::stol(std::string(argv[1]));
+	}
+	
 
 	for (int y = img.Height - 1; y >= 0; y--)
 	{
