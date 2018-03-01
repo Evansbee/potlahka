@@ -5,6 +5,9 @@
 #include <cstdlib>
 #include <cstdint>
 #include <iostream>
+#include <vector>
+#include <ctime>
+
 #include "image.hpp"
 #include "vec3.hpp"
 #include "plane.hpp"
@@ -12,8 +15,7 @@
 #include "sphere.hpp"
 #include "hittable.hpp"
 #include "random.hpp"
-#include <vector>
-#include <ctime>
+#include "camera.hpp"
 #include "material.hpp"
 
 std::vector<hittable*> hittables;
@@ -55,23 +57,21 @@ vec3 color(const ray &r, int depth = 0)
 
 int main()
 {
-	Image img = AllocateImage(600, 300);
+	Image img = AllocateImage(400, 200);
 	auto start_time = clock();
-	hittables.push_back(new sphere(vec3(0, 0, -1), .5, new lambertian(vec3(.9,.9,.9))));
+	hittables.push_back(new sphere(vec3(0, 0, -1), .5, new lambertian(vec3(random_range(), random_range(), random_range()))));
 
-	hittables.push_back(new sphere(vec3(0, -100.5, -1), 100, new lambertian(vec3(.8, .8, 0))));
+	hittables.push_back(new sphere(vec3(0, -100.5, -1), 100, new lambertian(vec3(random_range(), random_range(), random_range()))));
 
-	hittables.push_back(new sphere(vec3(1, 0, -1), .5, new metal(vec3(.95,.95,.95),.05)));
+	hittables.push_back(new sphere(vec3(1, 0, -1), random_range(), new metal(vec3(random_range(), random_range(), random_range()),random_range())));
 
-	hittables.push_back(new sphere(vec3(-1, 0, -1), .5, new metal(vec3(.8, .8, .8),.2)));
+	hittables.push_back(new sphere(vec3(-1, 0, -1), random_range(), new metal(vec3(random_range(), random_range(), random_range()), random_range())));
 
-	vec3 lower_left_corner(-2.0, -1.0, -1.0);
-	vec3 horizontal(4.0, 0.0, 0.0);
-	vec3 vertical(0.0, 2.0, 0.0);
-	vec3 origin(0.0, 0.0, 0.0);
 	int32_t last_percent = -1;
 	
-	const int num_samples = 32;
+	camera c(vec3(0.0,0.0,0.0),vec3(),75.0,2.0); //camera(const vec3& position, const vec3& lookAt, real FoV, real AspectRatio))
+
+	const int num_samples = 16;
 
 	for (int y = img.Height - 1; y >= 0; y--)
 	{
@@ -83,7 +83,7 @@ int main()
 				real u = ((real)x + random_range(0,1))/ (real)img.Width;
 				real v = ((real)y + random_range(0,1))/ (real)img.Height;
 
-				ray r(origin, lower_left_corner + u * horizontal + v * vertical);
+				ray r = c.GetRay(u,v);
 				out_color += color(r)/(real)num_samples;
 			}
 			out_color = vec3(sqrt(out_color.r), sqrt(out_color.g), sqrt(out_color.b));
