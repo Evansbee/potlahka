@@ -23,6 +23,7 @@
     <ProjectGuid>{CD640408-FA80-4A8B-9952-66EA62A454B3}</ProjectGuid>
     <RootNamespace>potlahkatests</RootNamespace>
     <ProjectName>Potlahka Tests</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

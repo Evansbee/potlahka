@@ -23,6 +23,7 @@
     <ProjectGuid>{3D713F24-698D-4B4F-810D-0CE4E2EED380}</ProjectGuid>
     <RootNamespace>potlahkalib</RootNamespace>
     <ProjectName>libpotlahka</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
