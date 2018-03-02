@@ -107,12 +107,12 @@ vec3 color(const ray &r, int depth)
 std::mutex chunk_access;
 void RenderQueueTillEmpty(std::vector<chunk> *chunks)
 {
+	std::cout<<"[INFO] Initializing render core: "<<std::this_thread::get_id()<<std::endl;
 	while (true)
 	{
 		chunk_access.lock();
 		if (chunks->size() > 0)
 		{
-			std::cout << "[INFO] Chunks Left: " << chunks->size() << " (at thread " << std::this_thread::get_id() << ")\n";
 			auto c = chunks->at(chunks->size() - 1);
 			chunks->pop_back();
 			chunk_access.unlock();
