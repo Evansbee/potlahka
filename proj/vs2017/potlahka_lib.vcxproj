@@ -162,6 +162,7 @@
     <ClInclude Include="..\..\inc\plane.hpp" />
     <ClInclude Include="..\..\inc\random.hpp" />
     <ClInclude Include="..\..\inc\ray.hpp" />
+    <ClInclude Include="..\..\inc\renderer.hpp" />
     <ClInclude Include="..\..\inc\sphere.hpp" />
     <ClInclude Include="..\..\inc\vec3.hpp" />
     <ClInclude Include="..\..\inc\world.hpp" />

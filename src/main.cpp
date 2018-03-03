@@ -55,7 +55,7 @@ void render_section(chunk c)
 				ray r = c.cam->GetRay(u, v);
 				out_color += color(r) / (real)num_samples;
 			}
-			out_color = vec3(sqrt(out_color.r), sqrt(out_color.g), sqrt(out_color.b));
+			out_color.gamma_correct();
 			uint32_t red = (uint8_t)(out_color[0] * 255.99) << 16;
 			uint32_t green = (uint8_t)(out_color[1] * 255.99) << 8;
 			uint32_t blue = (uint8_t)(out_color[2] * 255.99);
@@ -107,7 +107,9 @@ vec3 color(const ray &r, int depth)
 std::mutex chunk_access;
 void RenderQueueTillEmpty(std::vector<chunk> *chunks)
 {
-	std::cout<<"[INFO] Initializing render core: "<<std::this_thread::get_id()<<std::endl;
+	chunk_access.lock();
+	std::cout<<"[INFO] Initializing render core: "<< std::this_thread::get_id() << "\n";
+	chunk_access.unlock();
 	while (true)
 	{
 		chunk_access.lock();
