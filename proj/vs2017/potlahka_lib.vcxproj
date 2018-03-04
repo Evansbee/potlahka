@@ -148,12 +148,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\camera.cpp" />
+    <ClCompile Include="..\..\src\color.cpp" />
     <ClCompile Include="..\..\src\image.cpp" />
     <ClCompile Include="..\..\src\random.cpp" />
     <ClCompile Include="..\..\src\vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\inc\camera.hpp" />
+    <ClInclude Include="..\..\inc\color.h" />
     <ClInclude Include="..\..\inc\config.hpp" />
     <ClInclude Include="..\..\inc\hittable.hpp" />
     <ClInclude Include="..\..\inc\image.hpp" />
