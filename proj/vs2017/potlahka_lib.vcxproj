@@ -150,6 +150,7 @@
     <ClCompile Include="..\..\src\camera.cpp" />
     <ClCompile Include="..\..\src\color.cpp" />
     <ClCompile Include="..\..\src\image.cpp" />
+    <ClCompile Include="..\..\src\input.cpp" />
     <ClCompile Include="..\..\src\random.cpp" />
     <ClCompile Include="..\..\src\vec3.cpp" />
   </ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="..\..\inc\config.hpp" />
     <ClInclude Include="..\..\inc\hittable.hpp" />
     <ClInclude Include="..\..\inc\image.hpp" />
+    <ClInclude Include="..\..\inc\input.hpp" />
     <ClInclude Include="..\..\inc\material.hpp" />
     <ClInclude Include="..\..\inc\overlay_text.hpp" />
     <ClInclude Include="..\..\inc\plane.hpp" />
