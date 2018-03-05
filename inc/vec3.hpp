@@ -27,8 +27,8 @@ public:
 	{
 		return sqrtf(length_squared());
 		__m128 wide;
-		wide.m128_f32[0] = length_squared();
-		return _mm_sqrt_ss(wide).m128_f32[0];
+		reinterpret_cast<float*>(&wide)[0] = length_squared();
+		return reinterpret_cast<float*>(&_mm_sqrt_ss(wide))[0];
 	}
 
 	inline real length_squared() const
@@ -144,8 +144,8 @@ inline real dot(const vec3 &v1, const vec3 &v2)
 	__m128 res = _mm_dp_ps(v1.wide, v2.wide, 0xff);
 	float test = v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
 
-	return res.m128_f32[0];
-	return v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
+	return reinterpret_cast<float*>(&res)[0]; 
+	
 }
 
 
@@ -180,5 +180,5 @@ inline vec3& vec3::operator /= (real other) { *this = *this / other;  return *th
 
 inline vec3 reflect(const vec3& in, const vec3& n)
 {
-	return in - 2.0*dot(in, n)*n;
+	return in - 2.0f*dot(in, n)*n;
 }

@@ -90,7 +90,7 @@ uint32_t RealToBGRA(const vec3& in, bool gamma_correct)
 {
 	if (!gamma_correct)
 	{
-		uint32_t abgr;
+		
 	}
 	return 0;
 }

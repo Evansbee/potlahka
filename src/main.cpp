@@ -41,13 +41,13 @@ std::mutex rays_mutex;
 
 void render_section(chunk c)
 {
-	const int num_samples = 64;
-	for (int y = c.starty; y < c.starty + c.height; ++y)
+	const uint32_t num_samples = 64;
+	for (uint32_t y = c.starty; y < c.starty + c.height; ++y)
 	{
-		for (int x = c.startx; x < c.startx + c.width; ++x)
+		for (uint32_t x = c.startx; x < c.startx + c.width; ++x)
 		{
 			vec3 out_color;
-			for (auto s = 0; s < num_samples; s++)
+			for (uint32_t s = 0; s < num_samples; s++)
 			{
 				real u = ((real)x + random_range(0, 1)) / (real)c.image->Width;
 				real v = ((real)y + random_range(0, 1)) / (real)c.image->Height;
@@ -72,14 +72,14 @@ uint64_t rays = 0;
 vec3 color(const ray &r, int depth)
 {
 	hit_record h;
-	real max = DBL_MAX;
+	real max = FLT_MAX;
 	bool any_hit = false;
 	for (auto &s : hittables)
 	{
 		rays_mutex.lock();
 		rays++;
 		rays_mutex.unlock();
-		if (s->hit(r, 0.001, max, h))
+		if (s->hit(r, 0.0001f, max, h))
 		{
 			any_hit = true;
 			max = h.t;
@@ -101,8 +101,8 @@ vec3 color(const ray &r, int depth)
 
 
 	vec3 unit_direction = unit_vector(r.direction);
-	real ot = 0.5 * (unit_direction.y + 1.0);
-	return (1.0f - ot) * vec3(1.0, 1.0, 1.0) + ot * vec3(.5, .7, 1);
+	real ot = 0.5f * (unit_direction.y + 1.0f);
+	return (1.0f - ot) * vec3(1.0f, 1.0f, 1.0f) + ot * vec3(.5f, .7f, .1f);
 }
 std::mutex chunk_access;
 void RenderQueueTillEmpty(std::vector<chunk> *chunks)
@@ -155,9 +155,9 @@ int main(int argc, char** argv)
 	
 	uint32_t tile_size = 64;
 	
-	for (int y = 0; y < img.Height + (tile_size - 1); y+=tile_size)
+	for (uint32_t y = 0; y < img.Height + (tile_size - 1); y+=tile_size)
 	{
-		for (int x = 0; x < img.Width + (tile_size - 1); x+=tile_size)
+		for (uint32_t x = 0; x < img.Width + (tile_size - 1); x+=tile_size)
 		{
 			chunk c;
 			c.startx = x;
@@ -187,7 +187,7 @@ int main(int argc, char** argv)
 	}
 	std::vector<std::thread> thread_pool;
 	std::cout << "[INFO] Starting " << std::thread::hardware_concurrency() << " threads for rendering...\n";
-	for (auto i = 1; i < std::thread::hardware_concurrency(); ++i)
+	for (uint32_t i = 1; i < std::thread::hardware_concurrency(); ++i)
 	{
 		thread_pool.push_back(std::thread(RenderQueueTillEmpty, &chunks));
 	}

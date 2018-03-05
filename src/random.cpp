@@ -22,8 +22,8 @@ vec3 random_in_unit_sphere()
 real random_range(real lower, real upper)
 {
 	// ret = [lower, upper)
-	static unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	static std::default_random_engine generator(seed);
+	static auto seed = std::chrono::system_clock::now().time_since_epoch().count();
+	static std::default_random_engine generator((unsigned int)seed);
 	std::uniform_real_distribution<real> distribution(lower, upper);
 	return distribution(generator);
 }

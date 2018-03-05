@@ -4,7 +4,7 @@
 
 TEST_CASE("Vec3 Test", "[vec3]")
 {
-	real f1 = 123.512, f2 = 234.1232, f3 = 32423.1232;
+	real f1 = 123.512f, f2 = 234.1232f, f3 = 32423.1232f;
 	vec3 float_vec(f1, f2, f3);
 	REQUIRE(float_vec[0] == f1);
 	REQUIRE(float_vec.r == f1);
