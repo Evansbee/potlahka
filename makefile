@@ -20,7 +20,7 @@ TEST_LDFLAGS = -Llib -lpotlotlahka
 TEST_OUTPUT = bin/potlahka_tests
 
 all:
-	clang++ --std=c++11 -Iinc src/*.cpp -o bin/potlahka
+	clang++ -O2 --std=c++11 -Iinc src/*.cpp -o bin/potlahka
 
 
 	

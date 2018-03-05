@@ -41,7 +41,8 @@ std::mutex rays_mutex;
 
 void render_section(chunk c)
 {
-	const uint32_t num_samples = 64;
+   std::cout<<"Rendering Chunk\n";
+   const uint32_t num_samples = 64;
 	for (uint32_t y = c.starty; y < c.starty + c.height; ++y)
 	{
 		for (uint32_t x = c.startx; x < c.startx + c.width; ++x)

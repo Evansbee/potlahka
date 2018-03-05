@@ -28,7 +28,8 @@ public:
 		return sqrtf(length_squared());
 		__m128 wide;
 		reinterpret_cast<float*>(&wide)[0] = length_squared();
-		return reinterpret_cast<float*>(&_mm_sqrt_ss(wide))[0];
+      __m128 ret = _mm_sqrt_ss(wide);
+		return reinterpret_cast<float*>(&ret)[0];
 	}
 
 	inline real length_squared() const
